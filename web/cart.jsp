@@ -27,6 +27,7 @@
         }
     }
 %>
-<a href="ServletClearCart"><h4>清空购物车</h4></a>
+<a href="ServletClearCart"><h4>清空购物车</h4></a><br>
+<a href='product_list_demo.jsp'><h3>继续购物</h3></a>
 </body>
 </html>

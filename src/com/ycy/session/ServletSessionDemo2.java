@@ -2,6 +2,7 @@ package com.ycy.session;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +29,7 @@ public class ServletSessionDemo2 extends HttpServlet {
         //1. 获取要添加到购物车的商品id
         String id = request.getParameter("id");
 
-        String[] names = {"IPthon1", "IPthon2", "Pthon3", "IPthon4", "IPthon5", "IPthon6"};
+        String[] names = {"IPthon", "荣耀", "VIVO", "魅族", "小米", "一加"};
         String name = names[Integer.parseInt(id)];
 
         //2. 获取购物车存放东西的session  Map<String , Integer>
@@ -46,6 +47,11 @@ public class ServletSessionDemo2 extends HttpServlet {
         } else {
             map.put(name, 1);
         }
+
+        String id1 = request.getSession().getId();
+        Cookie cookie = new Cookie("JSESSIONID", id1);
+        cookie.setMaxAge(60 * 60 * 24 * 7);   //7天
+        response.addCookie(cookie);
 
         response.getWriter().write("<a href='product_list_demo.jsp'><h3>继续购物</h3></a>");
         response.getWriter().write("<a href='cart.jsp'><h3>去购物车结算</h3></a>");
